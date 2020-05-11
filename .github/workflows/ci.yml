@@ -1,0 +1,19 @@
+name: Dynawo omc
+
+on: [push]
+
+defaults:
+  run:
+    shell: bash
+jobs:
+  macos:
+    name: MacOS
+    runs-on: macos-latest
+    steps:
+      - name: Checkout sources
+        uses: actions/checkout@v1
+
+      - name: Install
+        run: |
+          git clone https://github.com/dynawo/dynawo.git
+          cd dynawo
