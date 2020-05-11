@@ -26,4 +26,4 @@ jobs:
           export DYNAWO_BUILD_TYPE=Release
           export DYNAWO_CXX11_ENABLED=YES
           export DYNAWO_COMPILER=CLANG
-          ./util/envDynawo.sh
+          ./util/envDynawo.sh build-omcDynawo
