@@ -34,8 +34,8 @@ jobs:
           mv Install OpenModelica
           zip -r Dynawo-OpenModelica-MacOS.zip OpenModelica
           echo "Finished zip"
-          asset_id=$(curl -s -H 'Authorization: token ${{ secrets.GITHUB_TOKEN }}' --request GET https://api.github.com/repos/gautierbureau/dynawo-macos-omc/releases/tags/test | grep -B 2 -m 1 Dynawo-OpenModelica-MacOS.zip | grep '"id"' | awk '{print $2}' | tr -d ',')
-          [ ! -z "$asset_id" ] && curl -H 'Authorization: token ${{ secrets.GITHUB_TOKEN }}' -X DELETE https://api.github.com/repos/gautierbureau/dynawo-macos-omc/releases/assets/${asset_id}
+          #asset_id=$(curl -s -H 'Authorization: token ${{ secrets.GITHUB_TOKEN }}' --request GET https://api.github.com/repos/gautierbureau/dynawo-macos-omc/releases/tags/test | grep -B 2 -m 1 Dynawo-OpenModelica-MacOS.zip | grep '"id"' | awk '{print $2}' | tr -d ',')
+          #[ ! -z "$asset_id" ] && curl -H 'Authorization: token ${{ secrets.GITHUB_TOKEN }}' -X DELETE https://api.github.com/repos/gautierbureau/dynawo-macos-omc/releases/assets/${asset_id}
           upload_url=$(curl -s -H 'Authorization: token ${{ secrets.GITHUB_TOKEN }}' --request GET https://api.github.com/repos/gautierbureau/dynawo-macos-omc/releases/tags/test | grep upload_url | cut -d '"' -f 4 | grep -o ".*assets")
           echo $upload_url
           curl -H 'Authorization: token ${{ secrets.GITHUB_TOKEN }}' -H 'Content-Type: application/zip' -X POST  ${upload_url}?name=Dynawo-OpenModelica-MacOS.zip --data-binary @Dynawo-OpenModelica-MacOS.zip
