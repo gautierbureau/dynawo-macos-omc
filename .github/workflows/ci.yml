@@ -35,6 +35,7 @@ jobs:
           cd $DYNAWO_INSTALL_OPENMODELICA
           ./rpath.sh
           rm -f ./rpath.sh
+          find . -name "*.la" -exec rm {} \;
           cd $DYNAWO_HOME/OpenModelica
           mv Install OpenModelica
           zip -r Dynawo-OpenModelica-MacOS.zip OpenModelica
