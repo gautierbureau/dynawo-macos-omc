@@ -32,7 +32,7 @@ jobs:
           ./util/envDynawo.sh build-omcDynawo
           cd ..
           cp ./rpath.sh $DYNAWO_INSTALL_OPENMODELICA
-          cd DYNAWO_INSTALL_OPENMODELICA
+          cd $DYNAWO_INSTALL_OPENMODELICA
           ./rpath.sh
           rm -f ./rpath.sh
           cd $DYNAWO_HOME/OpenModelica
