@@ -33,8 +33,21 @@ jobs:
           cd ..
           cp ./rpath.sh $DYNAWO_INSTALL_OPENMODELICA
           cd $DYNAWO_INSTALL_OPENMODELICA
-          find lib -name "libipopt.*" -exec rm -f {} \;
-          find lib -name "libcoinmumps.*" -exec rm -f {} \;
+          find lib -name "libipopt.*" -exec rm -f '{}' \;
+          find lib -name "libcoinmumps.*" -exec rm -f '{}' \;
+          find lib -name "*.a"
+          find lib -name "libamd.*" -exec rm -f '{}' \;
+          find lib -name "libbtf.*" -exec rm -f '{}' \;
+          find lib -name "libcminpack.*" -exec rm -f '{}' \;
+          find lib -name "libcolamd.*" -exec rm -f '{}' \;
+          find lib -name "libklu.*" -exec rm -f '{}' \;
+          find lib -name "liblis.*" -exec rm -f '{}' \;
+          find lib -name "libomopcua.*" -exec rm -f '{}' \;
+          find lib -name "libOpenModelicaFMIRuntimeC.*" -exec rm -f '{}' \;
+          find lib -name "libSimulationRuntimeC.*" -exec rm -f '{}' \;
+          find lib -name "libsundials.*" -exec rm -f '{}' \;
+          find lib -name "libumfpack.*" -exec rm -f '{}' \;
+          find lib -name "libzlib.*" -exec rm -f '{}' \;
           ./rpath.sh
           rm -f ./rpath.sh
           find . -name "*.la" -exec rm {} \;
