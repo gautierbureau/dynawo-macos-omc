@@ -1,6 +1,6 @@
 #!/bin/bash
 
-omc_lib_path=$(pwd)/lib/$(otool -l ./bin/omc | grep "@loader_path" | grep -o "lib/.*" | cut -d ' ' -f 1)
+omc_lib_path=$(pwd)/$(otool -l ./bin/omc | grep "@loader_path" | grep -o "lib/.*" | cut -d ' ' -f 1)
 
 for bin in $(find bin -mindepth 1); do
   for lib_path in $(otool -l $bin | grep RPATH -A2 | grep path | awk '{print $2}' | grep -v "@.*path"); do

@@ -33,6 +33,8 @@ jobs:
           cd ..
           cp ./rpath.sh $DYNAWO_INSTALL_OPENMODELICA
           cd $DYNAWO_INSTALL_OPENMODELICA
+          find lib -name "libipopt.*" -exec rm -f {} \;                                                                                 13:28 #2751
+          find lib -name "libcoinmumps.*" -exec rm -f {} \;
           ./rpath.sh
           rm -f ./rpath.sh
           find . -name "*.la" -exec rm {} \;
