@@ -17,47 +17,47 @@ jobs:
         run: brew install automake gnu-sed
 
       - name: Install
-        run: which gfortran-9
-          # |
-          # git clone https://github.com/dynawo/dynawo.git
-          # cd dynawo
-          # printenv
-          # export DYNAWO_HOME=$(pwd)
-          # export DYNAWO_SRC_OPENMODELICA=$DYNAWO_HOME/OpenModelica/Source
-          # export DYNAWO_INSTALL_OPENMODELICA=$DYNAWO_HOME/OpenModelica/Install
-          # export DYNAWO_LOCALE=en_GB
-          # export DYNAWO_NB_PROCESSORS_USED=4
-          # export DYNAWO_BUILD_TYPE=Release
-          # export DYNAWO_CXX11_ENABLED=YES
-          # export DYNAWO_COMPILER=CLANG
-          # ./util/envDynawo.sh build-omcDynawo
-          # cd ..
-          # cp ./rpath.sh $DYNAWO_INSTALL_OPENMODELICA
-          # cd $DYNAWO_INSTALL_OPENMODELICA
-          # find lib -name "libipopt*" -exec rm -f '{}' \;
-          # find lib -name "libcoinmumps*" -exec rm -f '{}' \;
-          # find lib -name "*.a" -exec rm -f '{}' \;
-          # find lib -name "libamd*" -exec rm -f '{}' \;
-          # find lib -name "libbtf*" -exec rm -f '{}' \;
-          # find lib -name "libcminpack*" -exec rm -f '{}' \;
-          # find lib -name "libcolamd*" -exec rm -f '{}' \;
-          # find lib -name "libklu*" -exec rm -f '{}' \;
-          # find lib -name "liblis*" -exec rm -f '{}' \;
-          # find lib -name "libomopcua*" -exec rm -f '{}' \;
-          # find lib -name "libOpenModelicaFMIRuntimeC*" -exec rm -f '{}' \;
-          # find lib -name "libSimulationRuntimeC*" -exec rm -f '{}' \;
-          # find lib -name "libsundials*" -exec rm -f '{}' \;
-          # find lib -name "libumfpack*" -exec rm -f '{}' \;
-          # find lib -name "libzlib*" -exec rm -f '{}' \;
-          # ./rpath.sh
-          # rm -f ./rpath.sh
-          # find . -name "*.la" -exec rm {} \;
-          # cd $DYNAWO_HOME/OpenModelica
-          # mv Install OpenModelica
-          # zip -r Dynawo-OpenModelica-MacOS.zip OpenModelica
-          # echo "Finished zip"
-          # asset_id=$(curl -s -H 'Authorization: token ${{ secrets.GITHUB_TOKEN }}' --request GET https://api.github.com/repos/gautierbureau/dynawo-macos-omc/releases/tags/test | grep -B 2 -m 1 Dynawo-OpenModelica-MacOS.zip | grep '"id"' | awk '{print $2}' | tr -d ',')
-          # [ ! -z "$asset_id" ] && curl -H 'Authorization: token ${{ secrets.GITHUB_TOKEN }}' -X DELETE https://api.github.com/repos/gautierbureau/dynawo-macos-omc/releases/assets/${asset_id}
-          # upload_url=$(curl -s -H 'Authorization: token ${{ secrets.GITHUB_TOKEN }}' --request GET https://api.github.com/repos/gautierbureau/dynawo-macos-omc/releases/tags/test | grep upload_url | cut -d '"' -f 4 | grep -o ".*assets")
-          # echo $upload_url
-          # curl -H 'Authorization: token ${{ secrets.GITHUB_TOKEN }}' -H 'Content-Type: application/zip' -X POST  ${upload_url}?name=Dynawo-OpenModelica-MacOS.zip --data-binary @Dynawo-OpenModelica-MacOS.zip
+        run: |
+          ln -s /usr/local/bin/gfortran-9 /usr/local/bin/gfortran
+          git clone https://github.com/dynawo/dynawo.git
+          cd dynawo
+          printenv
+          export DYNAWO_HOME=$(pwd)
+          export DYNAWO_SRC_OPENMODELICA=$DYNAWO_HOME/OpenModelica/Source
+          export DYNAWO_INSTALL_OPENMODELICA=$DYNAWO_HOME/OpenModelica/Install
+          export DYNAWO_LOCALE=en_GB
+          export DYNAWO_NB_PROCESSORS_USED=4
+          export DYNAWO_BUILD_TYPE=Release
+          export DYNAWO_CXX11_ENABLED=YES
+          export DYNAWO_COMPILER=CLANG
+          ./util/envDynawo.sh build-omcDynawo
+          cd ..
+          cp ./rpath.sh $DYNAWO_INSTALL_OPENMODELICA
+          cd $DYNAWO_INSTALL_OPENMODELICA
+          find lib -name "libipopt*" -exec rm -f '{}' \;
+          find lib -name "libcoinmumps*" -exec rm -f '{}' \;
+          find lib -name "*.a" -exec rm -f '{}' \;
+          find lib -name "libamd*" -exec rm -f '{}' \;
+          find lib -name "libbtf*" -exec rm -f '{}' \;
+          find lib -name "libcminpack*" -exec rm -f '{}' \;
+          find lib -name "libcolamd*" -exec rm -f '{}' \;
+          find lib -name "libklu*" -exec rm -f '{}' \;
+          find lib -name "liblis*" -exec rm -f '{}' \;
+          find lib -name "libomopcua*" -exec rm -f '{}' \;
+          find lib -name "libOpenModelicaFMIRuntimeC*" -exec rm -f '{}' \;
+          find lib -name "libSimulationRuntimeC*" -exec rm -f '{}' \;
+          find lib -name "libsundials*" -exec rm -f '{}' \;
+          find lib -name "libumfpack*" -exec rm -f '{}' \;
+          find lib -name "libzlib*" -exec rm -f '{}' \;
+          ./rpath.sh
+          rm -f ./rpath.sh
+          find . -name "*.la" -exec rm {} \;
+          cd $DYNAWO_HOME/OpenModelica
+          mv Install OpenModelica
+          zip -r Dynawo-OpenModelica-MacOS.zip OpenModelica
+          echo "Finished zip"
+          asset_id=$(curl -s -H 'Authorization: token ${{ secrets.GITHUB_TOKEN }}' --request GET https://api.github.com/repos/gautierbureau/dynawo-macos-omc/releases/tags/test | grep -B 2 -m 1 Dynawo-OpenModelica-MacOS.zip | grep '"id"' | awk '{print $2}' | tr -d ',')
+          [ ! -z "$asset_id" ] && curl -H 'Authorization: token ${{ secrets.GITHUB_TOKEN }}' -X DELETE https://api.github.com/repos/gautierbureau/dynawo-macos-omc/releases/assets/${asset_id}
+          upload_url=$(curl -s -H 'Authorization: token ${{ secrets.GITHUB_TOKEN }}' --request GET https://api.github.com/repos/gautierbureau/dynawo-macos-omc/releases/tags/test | grep upload_url | cut -d '"' -f 4 | grep -o ".*assets")
+          echo $upload_url
+          curl -H 'Authorization: token ${{ secrets.GITHUB_TOKEN }}' -H 'Content-Type: application/zip' -X POST  ${upload_url}?name=Dynawo-OpenModelica-MacOS.zip --data-binary @Dynawo-OpenModelica-MacOS.zip
