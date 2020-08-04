@@ -17,7 +17,7 @@ jobs:
         run: brew install automake gnu-sed
 
       - name: Install
-        run: gfortran -v 
+        run: which gfortran-9
           # |
           # git clone https://github.com/dynawo/dynawo.git
           # cd dynawo
