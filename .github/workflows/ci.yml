@@ -21,6 +21,7 @@ jobs:
           ln -s /usr/local/bin/gfortran-9 /usr/local/bin/gfortran
           git clone https://github.com/dynawo/dynawo.git
           cd dynawo
+          git checkout origin/1315_fix_omc_macos
           printenv
           export DYNAWO_HOME=$(pwd)
           export DYNAWO_SRC_OPENMODELICA=$DYNAWO_HOME/OpenModelica/Source
